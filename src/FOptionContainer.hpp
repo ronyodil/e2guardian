@@ -32,6 +32,7 @@ void getClientFromIP(const char *ip, std::string &clienthost);
 class FOptionContainer {
 
 public:
+    std::string http_resp_code;
     int reporting_level;
     int category_threshold;
     bool infection_bypass_errors_only;
