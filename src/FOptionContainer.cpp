@@ -475,8 +475,7 @@ bool FOptionContainer::read(const char *filename) {
                 return false;
             }
             // Add new variable to provide custom http response
-            String http_resp_code(findoptionS("http_resp_code"));
-            if (http_resp_code == "") {  
+            if (findoptionS("http_resp_code") == "") {
                 http_resp_code = "423 Locked";
             }
             // override default banned page
