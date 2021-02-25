@@ -1791,6 +1791,7 @@ bool ConnectionHandler::genDenyAccess(Socket &peerconn, String &eheader, String 
                                       bool ispostblock, int headersent, bool wasinfected, bool scanerror,
                                       bool forceshow) {
     int reporting_level = ldl->fg[filtergroup]->reporting_level;
+    String http_resp_code = ldl->fg[filtergroup]->http_resp_code;
 #ifdef E2DEBUG
 
     std::cerr << thread_id << " -reporting level is " << reporting_level << std::endl;
@@ -1906,12 +1907,12 @@ bool ConnectionHandler::genDenyAccess(Socket &peerconn, String &eheader, String 
                 // (or advanced ad block page, or HTML page with bypass URLs)
                 if (replaceimage) {
                     if (headersent == 0) {
-                        eheader = "HTTP/1.1 200 OK\r\n";
+                        eheader = "HTTP/1.1 " + http_resp_code + "\r\n";
                     }
                     o.banned_image.display_hb(eheader, ebody);
                 } else if (replaceflash) {
                     if (headersent == 0) {
-                        eheader = "HTTP/1.1 200 OK\r\n";
+                        eheader = "HTTP/1.1 " + http_resp_code + "\r\n";
                     }
                     o.banned_flash.display_hb(eheader, ebody);
                 } else {
@@ -1960,7 +1961,7 @@ bool ConnectionHandler::genDenyAccess(Socket &peerconn, String &eheader, String 
                         }
 
                         if (headersent == 0) {
-                            eheader = "HTTP/1.1 200 \r\n";
+                            eheader = "HTTP/1.1 " + http_resp_code + "\r\n";
                         }
                         if (headersent < 2) {
                             eheader += "Content-type: text/html\r\n\r\n";
