@@ -474,6 +474,11 @@ bool FOptionContainer::read(const char *filename) {
                 syslog(LOG_ERR, "%s", "Warning accessdeniedaddress setting appears to be wrong in reportinglevel 3");
                 return false;
             }
+            // Add new variable to provide custom http response
+            String http_resp_code(findoptionS("http_resp_code"));
+            if (http_resp_code == "") {  
+                http_resp_code = "423 Locked";
+            }
             // override default banned page
             String html_template(findoptionS("htmltemplate"));
             if (html_template != "") {
