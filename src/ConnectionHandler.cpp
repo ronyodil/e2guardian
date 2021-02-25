@@ -2125,7 +2125,7 @@ bool ConnectionHandler::genDenyAccess(Socket &peerconn, String &eheader, String 
 
             // the user is using the barebones banned page
         else if (reporting_level == 0) {
-            eheader = "HTTP/1.1 200 OK\r\n";
+            eheader = "HTTP/1.1 " + http_resp_code + "\r\n";
             eheader += "Content-type: text/html\r\n";
             ebody = "<HTML><HEAD><TITLE>e2guardian - ";
             ebody += o.language_list.getTranslation(1); // access denied
