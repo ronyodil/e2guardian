@@ -543,7 +543,7 @@ void String::realPath()
     unsigned int offset = 0, l = this->length();
     for (unsigned int i = 0; i < l; i++) {
         b = (*this)[i];
-        if (b == '/') {
+/*        if (b == '/') {
             if ((*this)[i + 1] == '/') { // ignore multiple slashes
                 continue;
             }
@@ -572,7 +572,7 @@ void String::realPath()
                 }
             }
         }
-        temp[offset++] = b;
+*/        temp[offset++] = b;
     }
     temp[offset] = '\0';
     *this = temp;
