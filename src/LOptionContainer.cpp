@@ -198,7 +198,8 @@ char *LOptionContainer::inURLList(String &url, ListContainer *lc, bool ip, bool 
         String tpath("/");
         tpath += url.after("/");
         url = url.before("/");
-        tpath.hexDecode();
+        tpath.hexDecode(false);
+        tpath.removeWhiteSpace();
         tpath.realPath();
         url += tpath; // will resolve ../ and %2e2e/ and // etc
     }

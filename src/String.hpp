@@ -82,7 +82,7 @@ class String : public std::string
     void swapChar(char old, char newc);
 
     // decode %xx to characters (checkme: duplicate code?)
-    void hexDecode();
+    void hexDecode(bool decodespecchar = true);
 
     // does the string start/end with this text?
     bool startsWith(const String &s) const;

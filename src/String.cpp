@@ -301,7 +301,7 @@ void String::fullPath(String &base_dir) {
 }
 
 // decode %xx to individual characters (checkme: i'm sure this is duplicated elsewhere...)
-void String::hexDecode()
+void String::hexDecode(bool decodespecchar)
 {
     if (this->length() < 3)
         return;
@@ -322,7 +322,8 @@ void String::hexDecode()
         c1 = t[i];
         c2 = t[i + 1];
         c3 = t[i + 2];
-        if (c1 == '%' && (((c2 >= '0') && (c2 <= '9')) || ((c2 >= 'a') && (c2 <= 'f')) || ((c2 >= 'A') && (c2 <= 'F'))) && (((c3 >= '0') && (c3 <= '9')) || ((c3 >= 'a') && (c3 <= 'f')) || ((c3 >= 'A') && (c3 <= 'F')))) {
+//        if (c1 == '%' && (((c2 >= '0') && (c2 <= '9')) || ((c2 >= 'a') && (c2 <= 'f')) || ((c2 >= 'A') && (c2 <= 'F'))) && (((c3 >= '0') && (c3 <= '9')) || ((c3 >= 'a') && (c3 <= 'f')) || ((c3 >= 'A') && (c3 <= 'F')))) {
+        if (c1 == '%' && ((decodespecchar && (c2 >= '0') && (c2 <= '9')) || (!decodespecchar && (c2 >= '1') && (c2 <= '9')) || ((c2 >= 'a') && (c2 <= 'f')) || ((c2 >= 'A') && (c2 <= 'F'))) && (((c3 >= '0') && (c3 <= '9')) || ((c3 >= 'a') && (c3 <= 'f')) || ((c3 >= 'A') && (c3 <= 'F')))) {
             hexval[2] = c2;
             hexval[3] = c3;
             c = (unsigned char)strtol(hexval, &ptr, 0);

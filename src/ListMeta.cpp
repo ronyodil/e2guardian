@@ -548,7 +548,8 @@ char *ListMeta::inURLList(String &urlp, unsigned int list, String &lc, bool &sit
         String tpath("/");
         tpath += url.after("/");
         url = url.before("/");
-        tpath.hexDecode();
+        tpath.hexDecode(false);
+        tpath.removeWhiteSpace();
         tpath.realPath();
         url += tpath; // will resolve ../ and %2e2e/ and // etc
     }
